@@ -1,0 +1,64 @@
+/* YM level-up layer. Does not replace ym.css. */
+#ym-level-status {
+  position: fixed;
+  left: 12px;
+  bottom: calc(12px + env(safe-area-inset-bottom));
+  z-index: 12000;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #0f172a;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  pointer-events: none;
+}
+#ym-level-status .dot { width: 8px; height: 8px; border-radius: 50%; background: #94a3b8; }
+#ym-level-status.ok .dot { background: #22c55e; }
+#ym-level-status.warn .dot { background: #eab308; }
+#ym-level-status.bad .dot { background: #ef4444; }
+#chat-input { max-height: 96px; resize: none; }
+.composer { padding-bottom: env(safe-area-inset-bottom); }
+.ym-empty-hint {
+  margin: 8px 0;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: #f8fafc;
+  color: #475569;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.msg-send-fail { text-decoration: underline; }
+@media (prefers-reduced-motion: reduce) {
+  * { scroll-behavior: auto !important; }
+}
+
+/* 修正: ヘッダーは1行。古い wrap !important より後に読む。 */
+.chat-header-row {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  gap: 8px;
+  min-height: 48px;
+}
+.chat-header-row h3 {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.chat-toolbar { flex-wrap: nowrap !important; }
+.friend-list { max-height: none !important; }
+.composer, #chat-composer {
+  position: sticky;
+  bottom: 0;
+  z-index: 12;
+  background: rgba(255,255,255,0.96);
+}
+@media (max-width: 768px) {
+  .chat-header-row, .chat-toolbar { flex-wrap: nowrap !important; }
+  body.mobile-chat-active .chat-box > div:first-of-type { position: static !important; }
+}
